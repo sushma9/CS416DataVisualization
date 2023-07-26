@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Narrative visualization of Netflix Userbase Dataset</title>
+    <meta charset="utf-8">
+    <meta name="description" content="A Snapshot of a sample Netflix Userbase">
+    <meta name="author" content="Sushma Ponna">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+    <div id="barchart_1"></div>
+
+    <!-- Load D3 -->
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>   
+    <style>
+        .screen {
+            display: none;
+        }
+        .active-screen {
+            display: block;
+        }
+    button {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+    <div class="screen" id="screen1">
+        <figure>
+            <img src="images/netflix.jpg" alt="Netflix Logo" width="1450" height="400">
+        </figure>
+        <h1 style="color:navy;text-align:center;">Narrative Visualization Of Netflix Userbase Dataset for CS416 Data Visualization Final Project at UIUC</h1>
+        <h3 style="color:steelblue;text-align:center;">A Snapshot of a sample Netflix Userbase</h3>
+        <p style="color:steelblue;text-align:center;">
+            Created by Sushma Ponna
+        </p>
+        <button onclick="prevScreen()">Previous</button>
+        <button onclick="nextScreen()">Next</button>
+    </div>
+
+    <div class="screen" id="screen2">
+        <h1>About the Dataset</h1>
+        <p>
+            The dataset provides a snapshot of a sample Netflix userbase, showcasing various aspects of user subscriptions, revenue, account details, and activity. Each row represents a unique user, identified by their User ID. The dataset includes information such as the user's subscription type (Basic, Standard, or Premium), the monthly revenue generated from their subscription, the date they joined Netflix (Join Date), the date of their last payment (Last Payment Date), and the country in which they are located.
+            Additional columns have been included to provide insights into user behavior and preferences. These columns include Device Type (e.g., Smart TV, Mobile, Desktop, Tablet), Total Watch Time (in minutes), and Account Status (whether the account is active or not). The dataset serves as a synthetic representation and does not reflect actual Netflix user data. It can be used for analysis and modeling to understand user trends, preferences, and revenue generation within a hypothetical Netflix userbase.
+        </p>
+        <br>
+        <p>
+            The below section offers answers to the basic questions such as Which is the most popular subscription plan purchased by its users?
+        </p>
+
+        <script>
+            var margin = {top: 10, right: 30, bottom: 30, left: 40},
+                            width = 460 - margin.left - margin.right,
+                            height = 400 - margin.top - margin.bottom;
+
+            // append the svg object to the body of the page
+            var svg = d3.select("#barchart_1")
+                        .append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+            // get the data
+            d3.csv("https://github.com/sushma9/CS416DataVisualization/tree/main/Data/NetflixUserbase.csv", function(data) {
+                    console.log(data[0]);
+            });
+        </script>
+// Ends here
+        <button onclick="prevScreen()">Previous</button>
+        <button onclick="nextScreen()">Next</button>
+    </div>
+
+    <div class="screen" id="screen3">
+        <h1>Screen 3</h1>
+        <p>This is the third screen.</p>
+        <button onclick="prevScreen()">Previous</button>
+        <button onclick="nextScreen()">Next</button>
+    </div>
+
+    <script>
+        let currentScreen = 1;
+        showScreen(currentScreen);
+
+        function showScreen(screenNumber) {
+            const screens = document.getElementsByClassName('screen');
+            for (let i = 0; i < screens.length; i++) {
+                screens[i].classList.remove('active-screen');
+            }
+            document.getElementById('screen' + screenNumber).classList.add('active-screen');
+        }
+
+        function prevScreen() {
+            currentScreen = (currentScreen - 1) > 0 ? (currentScreen - 1) : 1;
+            showScreen(currentScreen);
+        }
+
+        function nextScreen() {
+            currentScreen = (currentScreen + 1) <= 3 ? (currentScreen + 1) : 3;
+            showScreen(currentScreen);
+        }
+  </script>
+</body>
+</html>
+

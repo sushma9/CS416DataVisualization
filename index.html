@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>Narrative visualization of Netflix Userbase Dataset</title>
@@ -6,24 +7,42 @@
     <meta name="description" content="A Snapshot of a sample Netflix Userbase">
     <meta name="author" content="Sushma Ponna">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
 
-    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
-
-    <div id="barchart_1"></div>
+    
 
     <!-- Load D3 -->
-    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>   
+
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+      
     <style>
+        .panel-image {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          display: flex;
+        }                    
+
+        .panel-image > img {
+            margin: auto;
+        }
         .screen {
             display: none;
         }
         .active-screen {
             display: block;
         }
-    button {
-      margin: 10px;
-    }
+        .bar {
+            fill: "#69b3a2;";
+        }
+        .bar:hover {
+            fill: orange;
+        }        
+        button {
+            margin: 10px;
+        }
+        
   </style>
 </head>
 <body>
@@ -36,51 +55,384 @@
         <p style="color:steelblue;text-align:center;">
             Created by Sushma Ponna
         </p>
-        <button onclick="prevScreen()">Previous</button>
+
+        <h1>About the Visualization</h1>
+        <p>
+            The narrative Visualization follows an interactive slideshow with three scenes to guide the users through different scenarios. Users can navigate through screens by clicking the Previous/Next buttons. The tooltips along with the selection options offer a great deal of information to the users. Modifying the selection buttons triggers changes in the charts which make the visualization interactive.
+
+            The purpose of this visualization is to explore and provide a snapshot of the summary statistics of a sample Netflix userbase, showcasing various aspects of user subscriptions, revenue, account details, and activity.
+            
+        </p>
+        <br>
+        <h3>About the Dataset</h3>
+        <p>
+            The Netflix Userbase Dataset was sourced from <a href="https://www.kaggle.com/datasets/arnavsmayan/netflix-userbase-dataset">Kaggle</a>
+            The dataset includes information such as the user's subscription type (Basic, Standard, or Premium), the monthly revenue generated from their subscription, the date they joined Netflix (Join Date), the date of their last payment (Last Payment Date), and the country in which they are located.
+            
+        </p>
+        <br>        
+        <h3>It is All About The Footprint!!!</h3>  
+        <p>
+          The streaming giant has established a substantial footprint across various countries, extending its reach to a global scale.The bubble map below displays the distribution of Netflix users around the world, allowing us to instantly grasp the relative concentration of users in various regions. 
+
+          The bubble map below presents an intriguing picture of the platform's international popularity. Remarkably, both the USA and Spain lead the charts with an equal count of 451 users, indicating a strong and comparable userbase in these regions. Following closely, Canada stands as another prominent market with 317 users, while Australia, Brazil, France, Germany, Italy, and Mexico share an equally impressive count of 183 users each. These findings highlight Netflix's successful expansion across diverse cultures and geographies, with a notable presence in multiple continents. Although, the consistent count of 183 users in several countries tells us that the platform has a very wide scope to resonate with audiences globally, transcending language barriers and cultural boundaries even further.
+
+        </p>
+        <figure>
+            <img src="images/wm.png" alt="Bubblemap World" width="1200" height="500">
+        </figure>
+        
         <button onclick="nextScreen()">Next</button>
     </div>
 
+
     <div class="screen" id="screen2">
-        <h1>About the Dataset</h1>
+    
+        <h3>Userbase Stats</h3>
         <p>
-            The dataset provides a snapshot of a sample Netflix userbase, showcasing various aspects of user subscriptions, revenue, account details, and activity. Each row represents a unique user, identified by their User ID. The dataset includes information such as the user's subscription type (Basic, Standard, or Premium), the monthly revenue generated from their subscription, the date they joined Netflix (Join Date), the date of their last payment (Last Payment Date), and the country in which they are located.
-            Additional columns have been included to provide insights into user behavior and preferences. These columns include Device Type (e.g., Smart TV, Mobile, Desktop, Tablet), Total Watch Time (in minutes), and Account Status (whether the account is active or not). The dataset serves as a synthetic representation and does not reflect actual Netflix user data. It can be used for analysis and modeling to understand user trends, preferences, and revenue generation within a hypothetical Netflix userbase.
+            Insights into user demographics can hold immense value. Understanding the demographic composition of users, such as age groups, gender distribution, and geographical locations, can provide valuable information about the platform's target audience. This knowledge allows Netflix to tailor its content library and recommendations to cater to specific user segments, enhancing user satisfaction and engagement. 
+
         </p>
         <br>
         <p>
-            The below section offers answers to the basic questions such as Which is the most popular subscription plan purchased by its users?
+            The dataset spans a range of ages from 26 to 51 years old and from the chart below, we can observe that the age groups with the highest user counts are 28, 30, 31, and 39. This indicates that these age groups are more prominent within the userbase and represent significant segments of Netflix's audience. On the other hand, the age groups of 26 and 50 have the lowest user counts, with only one and 84 users, respectively. While these segments have a smaller representation in the dataset, they still hold value for Netflix as they represent potential areas of growth and may be of interest in targeted content and marketing strategies.
+        </p>
+        <br>
+        <p>
+            Another important factor which can provide valuable insights into the platform's revenue model and user preferences is the subscription type. The bar chart for Subscription Type, which can be accessed by clicking on the 'Subscription Type' button, reveals that a significant number of users (999) have opted for the Basic subscription plan, which is the most affordable but offers limited features compared to the other plans. On the other hand, 768 users have chosen the Standard subscription, while 733 users have opted for the Premium subscription, which offers additional benefits like HD and Ultra HD streaming and multiple device access.
+        </p>
+        <br>
+        <p>
+            The high number of users on the Basic plan may indicate a large pool of price-sensitive customers who are willing to trade off additional features for a lower cost. This may suggest that Netflix's pricing strategy effectively caters to a diverse audience, making the service accessible to a broader userbase.
+        </p>
+        <br>
+        <p>
+            Other questions like which device was used mostly to watch, Has the $12 plan fetched more Monthly revenue, Do men watch more shows than women on netflix can be explored by clicking on the selection buttons. Happy Finding !!!!
         </p>
 
-        <script>
-            var margin = {top: 10, right: 30, bottom: 30, left: 40},
-                            width = 460 - margin.left - margin.right,
-                            height = 400 - margin.top - margin.bottom;
+        
+        
+        <!-- Add 3 buttons -->
+        <button onclick="update('Age')">Age</button>        
+        <button onclick="update('SubscriptionType')">Subscription Type</button> 
+        <button onclick="update('MonthlyRevenue')">Monthly Revenue</button> 
+        <button onclick="update('Gender')">Gender</button> 
+        <button onclick="update('Device')">Device</button> 
+        
+        
+        <div id="my_dataviz"></div>
+        
+        <script>            
+        // set the dimensions and margins of the graph
+        var margin = {top: 10, right: 30, bottom: 30, left: 50},
+            width = 500 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
 
-            // append the svg object to the body of the page
-            var svg = d3.select("#barchart_1")
-                        .append("svg")
-                        .attr("width", width + margin.left + margin.right)
-                        .attr("height", height + margin.top + margin.bottom)
-                        .append("g")
-                        .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+        // append the svg object to the body of the page
+        var svg = d3.select("#my_dataviz")
+          .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            // get the data
-            d3.csv("https://sushma9.github.io/CS416DataVisualization/Data/NetflixUserbase.csv", function(data) {
-                    console.log(data[0]);
+        // Initialise a X axis:
+        var x = d3.scaleBand().range([0, width]);
+        var xAxis = d3.axisBottom().scale(x);
+        svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .attr("class", "myXaxis")
+
+        // Initialize an Y axis
+        var y = d3.scaleLinear().range([height, 0]);
+        var yAxis = d3.axisLeft().scale(y);
+        svg.append("g")
+          .attr("class", "myYaxis")
+
+        svg.append("text")
+              .attr("class", "chart-title-1")
+              .attr('text-anchor', 'middle')
+              .attr("x", width / 2)
+              .attr("y", margin.top / 2)
+              .attr("text-anchor", "middle")
+              .style("font-size", "16px")
+              //.text(function(){ return "Total Net Monthly Revenue by " + colName; })
+              
+
+            svg.append("text")
+              .attr("class", "x-axis-label-1")
+              .attr("x", width / 2)
+              .attr("y", height + margin.bottom)
+              .attr("text-anchor", "middle")
+              .style("font-size", "12px")
+              //.text(function(){ return "Category: " + colName; });
+
+            svg.append("text")
+              .attr("class", "y-axis-label-1")
+              .attr("transform", "rotate(-90)")
+              .attr("x", 0 - height / 2)
+              .attr("y", -margin.left)
+              .attr("dy", "1em")
+              .style("font-size", "12px")
+              .style("text-anchor", "middle")
+              //.text("Net Monthly Revenue");
+
+        // Create a function that takes a dataset as input and update the plot:
+        function update(colName) {
+          d3.csv("https://sushma9.github.io/CS416DataVisualization/Data/NetflixUserbase.csv", function(data) {
+            var groupedData = d3.nest()
+              .key(function(d) { return d[colName]; })
+              .entries(data);
+                                
+            var chartData = groupedData.map(function(group) {
+              return { category: group.key, count: group.values.length };
             });
+            
+            // Update the X axis domain with the new data
+            x.domain(chartData.map(d => d.category));
+            svg.selectAll(".myXaxis").transition()
+              .duration(3000)
+              .call(xAxis);
+
+            // Update the Y axis domain with the new data
+            y.domain([0, (1.1 * d3.max(chartData, d => d.count))]);
+            svg.selectAll(".myYaxis")
+              .transition()
+              .duration(300)
+              .call(yAxis);
+
+            svg.select(".chart-title-1")
+              .text("Histogram of Category: " + colName);
+
+            svg.select(".x-axis-label-1")
+              .text(function(){ return "Category: " + colName; });
+
+            svg.select(".y-axis-label-1")
+              .text("Frequency / Counts");
+
+            // Create or update the bars
+            var bars = svg.selectAll(".bar")
+              //.data(chartData, function(d){return d.count});
+              .data(chartData);
+
+            bars.exit().remove(); // Remove any bars that are no longer needed
+
+            bars.enter() // Create new bars as needed
+              .append("rect")
+              .attr("class", "bar")
+              .attr("x", d => x(d.category))
+              .attr("width", x.bandwidth()-2)
+              .attr("y", d => y(d.count))
+              .attr("height", d => height - y(d.count))
+              //.style("fill", "steelblue")
+              //.attr("style", "outline: thin solid red;") 
+              .on("mouseover", function (event, d) {
+                const tooltip = d3.select("#tooltip");
+                //console.log(event)
+                tooltip.style("display", "block").html(`Category: ${event.category} <br/> Frequency: ${event.count}`)
+                  .style("left", (d3.mouse(this)[0]) + "px")
+                  .style("top", (d3.mouse(this)[1] + d3.mouse(this)[1]) + "px");
+              })
+              .on("mouseout", function () {
+                // Hide tooltip on mouseout
+                d3.select("#tooltip").style("display", "none");
+              })
+              .merge(bars) // Merge the enter and update selections to update the existing bars
+              .transition()
+              .duration(3000)
+              .attr("x", d => x(d.category))
+              .attr("width", x.bandwidth()-2)
+              .attr("y", d => y(d.count))
+              .attr("height", d => height - y(d.count));
+          });
+        }
+
+        // At the beginning, I run the update function on the first dataset:
+        update('Age');
+   
+            
+            
         </script>
-// Ends here
+        <div id="tooltip" style="display: none; position: absolute; background-color: #A3DAE7; padding: 4px; border: 1px solid #ccc;"></div>
+
         <button onclick="prevScreen()">Previous</button>
         <button onclick="nextScreen()">Next</button>
     </div>
 
     <div class="screen" id="screen3">
-        <h1>Screen 3</h1>
-        <p>This is the third screen.</p>
-        <button onclick="prevScreen()">Previous</button>
-        <button onclick="nextScreen()">Next</button>
-    </div>
+      
+      <h3>More Stats!!!</h3>
+        <p>
+            Analyzing monthly revenue by various demographic and user-specific factors, such as age, subscription type, gender, device, and country, can provide valuable insights that can significantly impact Netflix's business strategies and overall success. 
 
+        </p>
+        <br> 
+        <p>
+          Understanding how monthly revenue varies across different age groups allows Netflix to identify the most lucrative target audience. By recognizing which age segments contribute the most to revenue, the company can tailor content recommendations, marketing campaigns, and user experience to better appeal to these specific demographics. They can also create targeted content that resonates with different age groups, enhancing user engagement and retention.
+
+          The below bar chart for 'Age' shows that the age group of 30 and 39 fetch the highest monthly revenue followed by age groups 41, 28 and 31. 
+
+        </p>
+        <br> 
+        <p>
+          Other factors can affecting monthly revenue can be explored more by clicking on the selection buttons and studying the barcharts. The tooltips on the bars make it easy to read the values of the bars. 
+        </p> 
+        
+        <!-- Add 3 buttons -->
+        <button onclick="update2('Age')">Age</button>        
+        <button onclick="update2('SubscriptionType')">Subscription Type</button>         
+        <button onclick="update2('Gender')">Gender</button> 
+        <button onclick="update2('Device')">Device</button> 
+        <button onclick="update2('Country')">Country</button>  
+        
+        <div id="my_dataviz_2"></div>
+        
+        <script>            
+        // set the dimensions and margins of the graph
+        var margin2 = {top: 10, right: 30, bottom: 30, left: 50},
+            width2 = 500 - margin2.left - margin2.right,
+            height2 = 500 - margin2.top - margin2.bottom;
+
+        // append the svg object to the body of the page
+        var svg2 = d3.select("#my_dataviz_2")
+          .append("svg")
+            .attr("width", width2 + margin2.left + margin2.right)
+            .attr("height", height2 + margin2.top + margin2.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+
+        // Initialise a X axis:
+        var x2 = d3.scaleBand().range([0, width2]);
+        var xAxis2 = d3.axisBottom().scale(x2);
+        svg2.append("g")
+          .attr("transform", "translate(0," + height2 + ")")
+          .attr("class", "myXaxis")
+
+        // Initialize an Y axis
+        var y2 = d3.scaleLinear().range([height2, 0]);
+        var yAxis2 = d3.axisLeft().scale(y2);
+        svg2.append("g")
+          .attr("class", "myYaxis")
+
+        svg2.append("text")
+              .attr("class", "chart-title")
+              .attr('text-anchor', 'middle')
+              .attr("x", width2 / 2)
+              .attr("y", margin2.top / 2)
+              .attr("text-anchor", "middle")
+              .style("font-size", "16px")
+              //.text(function(){ return "Total Net Monthly Revenue by " + colName; })
+              
+
+            svg2.append("text")
+              .attr("class", "x-axis-label")
+              .attr("x", width2 / 2)
+              .attr("y", height2 + margin2.bottom)
+              .attr("text-anchor", "middle")
+              .style("font-size", "12px")
+              //.text(function(){ return "Category: " + colName; });
+
+            svg2.append("text")
+              .attr("class", "y-axis-label")
+              .attr("transform", "rotate(-90)")
+              .attr("x", 0 - height2 / 2)
+              .attr("y", -margin2.left)
+              .attr("dy", "1em")
+              .style("font-size", "12px")
+              .style("text-anchor", "middle")
+              //.text("Net Monthly Revenue");
+
+        // Create a function that takes a dataset as input and update the plot:
+        function update2(colName) {
+          
+          d3.csv("https://sushma9.github.io/CS416DataVisualization/Data/NetflixUserbase.csv", function(data) {
+            
+            var groupedData = d3.nest()
+                .key(function(d) { return d[colName]; })
+                .rollup(function(values) { return d3.sum(values, function(d) { return +d.MonthlyRevenue; }); })
+                .entries(data);
+
+            var chartData = groupedData.map(function(group) {
+                return { category: group.key, NetMonthlyRevenue: group.value };
+            });
+            
+            //svg2.selectAll(".chart-title, .x-axis-label, .y-axis-label").remove();
+            // Update the X axis domain with the new data
+            x2.domain(chartData.map(d => d.category));
+            svg2.selectAll(".myXaxis").transition()
+              .duration(300)
+              .call(xAxis2);
+
+            // Update the Y axis domain with the new data
+            y2.domain([0, (1.1 * d3.max(chartData, d => d.NetMonthlyRevenue) )]);
+            svg2.selectAll(".myYaxis")
+              .transition()
+              .duration(300)
+              .call(yAxis2);
+
+            svg2.select(".chart-title")
+              .text("Total Net Monthly Revenue by " + colName);
+
+            svg2.select(".x-axis-label")
+              .text(function(){ return "Category: " + colName; });
+
+            svg2.select(".y-axis-label")
+              .text("Net Monthly Revenue");
+
+            // Create or update the bars
+            var bars2 = svg2.selectAll(".bar")
+              .data(chartData);
+
+            bars2.exit().remove(); // Remove any bars that are no longer needed
+            bars2.selectAll(".text").remove();
+
+            bars2.enter() // Create new bars as needed
+              .append("rect")
+              .attr("class", "bar")
+              .attr("x", d => x2(d.category))
+              .attr("width", x2.bandwidth()-2)
+              .attr("y", d => y2(d.NetMonthlyRevenue))
+              .attr("height", d => height2 - y2(d.NetMonthlyRevenue))
+              //.style("fill", "steelblue")
+              //.attr("style", "outline: thin solid red;") 
+              .on("mouseover", function (event, d) {
+                const tooltip2 = d3.select("#tooltip2");
+                console.log(event)
+                tooltip2.style("display", "block").html(`Category: ${event.category} <br/> NetMonthlyRevenue: ${event.NetMonthlyRevenue}`)
+                  .style("left", (d3.mouse(this)[0]) + "px")
+                  .style("top", (d3.mouse(this)[1]) + "px");
+              })
+              .on("mouseout", function () {
+                // Hide tooltip on mouseout
+                d3.select("#tooltip2").style("display", "none");
+              })
+              .merge(bars2) // Merge the enter and update selections to update the existing bars
+              .transition()
+              .duration(3000)
+              .attr("x", d => x2(d.category))
+              .attr("width", x2.bandwidth()-2)
+              .attr("y", d => y2(d.NetMonthlyRevenue))
+              .attr("height", d => height2 - y2(d.NetMonthlyRevenue));
+
+            
+
+
+
+          });
+        }
+
+        // At the beginning, I run the update function on the first dataset:
+        update2('Age');
+   
+            
+            
+        </script>
+        <div id="tooltip2" style="display: none; position: absolute; background-color: #A3DAE7; padding: 4px; border: 1px solid #ccc;"></div>
+
+        <button onclick="prevScreen()">Previous</button>
+        
+    </div>
+    
     <script>
         let currentScreen = 1;
         showScreen(currentScreen);
@@ -105,4 +457,3 @@
   </script>
 </body>
 </html>
-
